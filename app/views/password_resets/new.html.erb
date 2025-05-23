@@ -1,0 +1,15 @@
+<h1>Forgot your password</h1>
+
+<%= form_with url: password_reset_path do |form|%>
+    <div class="mb-3">
+        <!-- Clicking on the label will automatically highlight the corresponding field (:email matches the label and field)-->
+        <%= form.label :email %>
+        <%= form.text_field :email, class: "form-control", placeholder:"test@abc.com" %>
+    </div>
+    
+    <div class="mb-3">
+        <!-- If no label is passed for the button, it looks for the code and tries to understand what is being done in the form -->
+        <%= form.submit "Reset Password", class:"btn btn-primary"%>
+    </div>
+
+<% end %>

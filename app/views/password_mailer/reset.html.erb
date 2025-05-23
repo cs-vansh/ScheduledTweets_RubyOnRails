@@ -1,0 +1,9 @@
+Hi <%= params[:user].email %>,
+
+You requested a reset of your password.
+
+Here is the link to reset your password. This link is only valid for 15 minutes.
+
+<!-- The whole point of adding _path at the last is that it gives just the partial url. When we are on the website, we just need the /about-us -->
+<!-- But this link will be clicked from the Email, so we will need the complete URL i.e. starting from https://......../password/reset/edit , which will be given by '_url' -->
+<%= link_to "Reset Password", password_reset_edit_url(token: @token) %>
