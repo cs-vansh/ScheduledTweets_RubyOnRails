@@ -12,9 +12,29 @@ Rails.application.routes.draw do
   get "about-us", to: "about#index", as: :about
 
   # for root can either write get "/" or root directly
-    # get "/", to: "main#index"
+  # get "/", to: "main#index"
   root to: "main#index"
 
+  get "password", to: "passwords#edit", as: :edit_password
+  patch "password", to: "passwords#update"
+
+  get "sign_up", to: "registrations#new"
+  post "sign_up", to: "registrations#create"
+
+  get "sign_in", to: "sessions#new"
+  post "sign_in", to: "sessions#create"
+
+  delete "logout", to: "sessions#destroy"
+
+  # password reset page
+  get "password/reset", to: "password_resets#new"
+  # password reset action
+  post "password/reset", to: "password_resets#create"
+
+  # password reset edit page
+  get "password/reset/edit", to: "password_resets#edit"
+  # password reset update action
+  patch "password/reset/edit", to: "password_resets#update"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

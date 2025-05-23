@@ -1,0 +1,35 @@
+<h1>Sign up</h1>
+
+<!-- If we don't specify the url, then it tries to look and find user_path. incase of :: "form_with model: @user do |form|"-->
+<!-- So we already had a get route for the sign_up, we create another route for sign_up but with POST request (and then pass it to registrations_controller's create method) -->
+<%= form_with model: @user, url:sign_up_path do |form| %>
+    <!-- form.object refers to the @user model here-->
+    <%if form.object.errors.any? %>
+        <div class="alert alert-danger">
+            <% form.object.errors.full_messages.each do |message| %>
+                <div><%= message %></div>
+            <% end %>
+        </div>
+    <% end %>
+
+    <div class="mb-3">
+        <!-- Clicking on the label will automatically highlight the corresponding field (:email matches the label and field)-->
+        <%= form.label :email %>
+        <%= form.text_field :email, class: "form-control", placeholder:"test@abc.com" %>
+    </div>
+
+    <div class="mb-3">
+        <%= form.label :password %>
+        <%= form.password_field :password, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+        <%= form.label :password_confirmation %>
+        <%= form.password_field :password_confirmation, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+        <!-- If no label is passed for the button, it looks for the code and tries to understand what is being done in the form -->
+        <%= form.submit "Sign Up", class:"btn btn-primary"%>
+    </div>
+
+<% end %>
