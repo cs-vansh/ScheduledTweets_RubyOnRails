@@ -36,6 +36,24 @@ Rails.application.routes.draw do
   # password reset update action
   patch "password/reset/edit", to: "password_resets#update"
 
+  get "/auth/twitter/callback", to: "omniauth_callbacks#twitter"
+
+  # the below line will automatically generate the paths for CRUD operations in relation to twitter_accounts model
+  # it will also set the controller (to: "twitter_accounts" which links to twitter_accounts_controller.rb) for these paths to as twitter_controller
+  resources :twitter_accounts
+  # The following routes were generate by resources
+  # | GET | /twitter_accounts | index | List all Twitter accounts |
+  # | GET | /twitter_accounts/new | new | Show form to create a new account |
+  # | POST | /twitter_accounts | create | Create a new Twitter account |
+  # | GET | /twitter_accounts/:id | show | Show a specific Twitter account |
+  # | GET | /twitter_accounts/:id/edit| edit | Show form to edit an account |
+  # | PATCH/PUT | /twitter_accounts/:id | update | Update a specific Twitter account |
+  # | DELETE | /twitter_accounts/:id | destroy | Delete a specific Twitter account |
+  # we don't need to implement all the routes in controller, we can be selective and choose which ones we want to.
+
+
+  resources :tweets
+
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker

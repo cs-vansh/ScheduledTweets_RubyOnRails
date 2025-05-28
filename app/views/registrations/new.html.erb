@@ -3,14 +3,7 @@
 <!-- If we don't specify the url, then it tries to look and find user_path. incase of :: "form_with model: @user do |form|"-->
 <!-- So we already had a get route for the sign_up, we create another route for sign_up but with POST request (and then pass it to registrations_controller's create method) -->
 <%= form_with model: @user, url:sign_up_path do |form| %>
-    <!-- form.object refers to the @user model here-->
-    <%if form.object.errors.any? %>
-        <div class="alert alert-danger">
-            <% form.object.errors.full_messages.each do |message| %>
-                <div><%= message %></div>
-            <% end %>
-        </div>
-    <% end %>
+    <%= render "shared/form_errors", form: form %>
 
     <div class="mb-3">
         <!-- Clicking on the label will automatically highlight the corresponding field (:email matches the label and field)-->
