@@ -12,7 +12,10 @@ rails credentials:edit --environment development
 #or
 # for production
 rails credentials:edit --environment production
+
+## NOTE: If the file doesn't stay open to edit.  You would need to pass a wait flag (for your editor) before running the command to edit credentials. 
 ```
+
 Add values as 
 
 ```
@@ -21,7 +24,14 @@ twitter:
     api_secret: API_Key_Secret_value
 ```
 
-2. Run the app:
+
+2. Run the migrations and update Schema
+
+```
+rails db:migrate
+```
+
+3. Run the app:
  ```
  rails server
  ```
